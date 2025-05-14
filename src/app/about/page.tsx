@@ -1,9 +1,11 @@
+import DButton from "../components/DownloadButton";
 import Navbar from "../components/Navbar";
+import { Download } from "@deemlol/next-icons";
 
 export default function About() {
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className="flex h-screen items-center justify-center bg-gray-900 p-5">
         <div className="grid md:grid-cols-2 grid-cols-1 items-center gap-10 md:px-10">
           <div>
@@ -12,13 +14,14 @@ export default function About() {
               Developer
             </h1>
             <p className="mb-6 text-white">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut
-              excepturi magnam enim officiis facilis numquam corporis quos
-              accusantium tempora, dolores quod cum facere architecto soluta
-              atque corrupti a alias perferendis.
+              At <b>NicoNet</b>, we create custom web and software solutions that help
+              businesses and startups scale. With a focus on performance,
+              security, and user experience, we turn ideas into fully
+              functional, high-quality applications. Are you ready to build something
+              amazing?
             </p>
             <div className="flex justify-center space-x-5">
-              <button className="flex w-full items-center justify-center gap-1 rounded-2xl bg-rose-500 p-5 py-3 font-semibold text-white hover:bg-rose-700">
+              <button className="flex w-1/2 items-center justify-center gap-1 rounded-2xl bg-rose-500 p-5 py-3 font-semibold text-white hover:bg-rose-700">
                 Follow
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -35,23 +38,9 @@ export default function About() {
                   />
                 </svg>
               </button>
-              <button className="flex w-full items-center justify-center gap-2 rounded-2xl bg-white p-5 py-3 font-semibold">
-                Resume
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="h-6 w-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                  />
-                </svg>
-              </button>
+              <div className="w-1/2">
+                <DButton href="../components/NicoResume.pdf" dfileName="Nico's_Resume"><span className="whitespace-nowrap flex items-center">Resume <Download size={24} color="#FFFFFF" /></span></DButton>
+              </div>
             </div>
           </div>
           <div>

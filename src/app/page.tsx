@@ -23,15 +23,14 @@ export default function Home() {
               </h1>
 
               <p className="text-xl mb-5 text-gray-300">
-                Leveraging modern technologies to deliver relaible and efficient
-                products.
+                Custome we development and software solutions designed to enhance performance, usability, and business growth.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <button className="group relative w-full sm:w-auto px-6 py-3 min-w-[160px]">
                   <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-lg"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-lg lg:blur-md blur-0 group-hover:opacity-60 transition-opacity duration-500"></div>
                   <div className="relative flex items-center justify-center gap-2">
-                    <span className="text-white font-medium">Get Started</span>
+                    <span className="text-white font-medium">Let&apos;s Talk</span>
                     <ArrowRight size={24} color="#FFFFFF" />
                   </div>
                 </button>
@@ -53,15 +52,15 @@ export default function Home() {
                 <ul className="space-y-4">
                   <li className="flex items-center">
                     <Key size={24} color="yellow" className="w-6 h-6 mr-3" />
-                    <span>Data-Driven EarthTech Solutions</span>
+                    <span><b>Custom Web Development</b> - Tailored websites and applications built for performance and scalability. </span>
                   </li>
                   <li className="flex items-center">
                     <Key size={24} color="green" className="w-6 h-6 mr-3" />
-                    <span>Human-Centric AI & Analytics</span>
+                    <span><b>End-to-End Software Solutions</b> - From planning to deployment, we build robust digital products.</span>
                   </li>
                   <li className="flex items-center">
                     <Key size={24} color="magenta" className="w-6 h-6 mr-3" />
-                    <span>NextGen Technology for a Sustainable Future</span>
+                    <span><b>User-Focused Design & Functionality</b> - Seamless UI/UX to enhance engagement and usability.</span>
                   </li>
                 </ul>
               </div>
@@ -69,7 +68,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0">
+        <div className="absolute bottom-0 left-0 right-0 ">
           <svg
             viewBox="0 0 1440 120"
             fill="none"

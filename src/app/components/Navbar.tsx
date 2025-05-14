@@ -29,18 +29,18 @@ export default function Navbar() {
       >
         <nav>
           <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
-            <li>
+            <li className="border-r">
               <Link className="md:p-4 py-3 px-0 block" href="./about">
                 About
               </Link>
             </li>
-            <li>
+            <li className="border-r">
               <Link className="md:p-4 py-3 px-0 block" href="./services">
                 Services
               </Link>
             </li>
-            <li>
-              <a className="md:p-4 py-3 px-0 block md:mb-0 mb-2" href="#">
+            <li className="border-r">
+              <a className="md:p-4 py-3 px-0 block md:mb-0 mb-2" href="./contact">
                 Contact Us
               </a>
             </li>
