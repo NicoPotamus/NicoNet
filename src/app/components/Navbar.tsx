@@ -30,19 +30,24 @@ export default function Navbar() {
         <nav>
           <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
             <li className="border-r">
-              <Link className="md:p-4 py-3 px-0 block" href="./about">
+              <Link className="md:p-4 py-3 px-0 block" href="/about">
                 About
               </Link>
             </li>
             <li className="border-r">
-              <Link className="md:p-4 py-3 px-0 block" href="./services">
+              <Link className="md:p-4 py-3 px-0 block" href="/portfolio">
+                Portfolio
+              </Link>
+            </li>
+            <li className="border-r">
+              <Link className="md:p-4 py-3 px-0 block" href="/services">
                 Services
               </Link>
             </li>
             <li className="border-r">
-              <a className="md:p-4 py-3 px-0 block md:mb-0 mb-2" href="./contact">
-                Contact Us
-              </a>
+              <Link className="md:p-4 py-3 px-0 block md:mb-0 mb-2" href="/contact">
+                Contact
+              </Link>
             </li>
           </ul>
         </nav>

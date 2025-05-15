@@ -1,4 +1,3 @@
-import DButton from "../components/DownloadButton";
 import Navbar from "../components/Navbar";
 import { Download } from "@deemlol/next-icons";
 
@@ -38,9 +37,6 @@ export default function About() {
                   />
                 </svg>
               </button>
-              <div className="w-1/2">
-                <DButton href="../components/NicoResume.pdf" dfileName="Nico's_Resume"><span className="whitespace-nowrap flex items-center">Resume <Download size={24} color="#FFFFFF" /></span></DButton>
-              </div>
             </div>
           </div>
           <div>
