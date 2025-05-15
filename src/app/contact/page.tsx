@@ -37,7 +37,7 @@ export default function Contact() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">Get In Touch</h1>
-              <p className="text-xl text-gray-300 mb-8">Let's discuss your project and create something amazing together</p>
+              <p className="text-xl text-gray-300 mb-8">Let&apos;s discuss your project and create something amazing together</p>
             </div>
           </div>
         </section>
@@ -110,7 +110,7 @@ export default function Contact() {
                   {submitted ? (
                     <div className="text-center py-12">
                       <h3 className="text-2xl font-bold text-green-600 mb-4">Message Sent!</h3>
-                      <p className="text-gray-600 mb-6">Thank you for reaching out. I'll get back to you soon!</p>
+                      <p className="text-gray-600 mb-6">Thank you for reaching out. I&apos;ll get back to you soon!</p>
                       <button
                         onClick={() => setSubmitted(false)}
                         className="text-blue-600 hover:text-blue-800"

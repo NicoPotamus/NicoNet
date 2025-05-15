@@ -133,7 +133,7 @@ export default function Services() {
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
               <p className="text-xl text-white/80 mb-8">
-                Let's discuss how I can help bring your ideas to life.
+                Let&apos;s discuss how I can help bring your ideas to life.
               </p>
               <a
                 href="/contact"

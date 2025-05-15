@@ -24,7 +24,7 @@ export default function Home() {
               </h1>
 
               <p className="text-xl mb-5 text-gray-300">
-                From custom web applications to complex systems, we deliver high-performance software solutions that scale. Let's turn your vision into reality.
+                From custom web applications to complex systems, we deliver high-performance software solutions that scale. Let&apos;s turn your vision into reality.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <button className="group relative w-full sm:w-auto px-6 py-3 min-w-[200px]">

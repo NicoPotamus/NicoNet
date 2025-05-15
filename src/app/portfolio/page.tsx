@@ -165,8 +165,8 @@ return (
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Let's Work Together</h2>
-              <p className="text-gray-600 mb-8">I'm currently available for freelance projects and full-time opportunities.</p>
+              <h2 className="text-3xl font-bold mb-4">Let&apos;s Work Together</h2>
+              <p className="text-gray-600 mb-8">I&apos;m currently available for freelance projects and full-time opportunities.</p>
               <Link 
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-600 to-cyan-600 text-white rounded-lg hover:opacity-90 transition-opacity"

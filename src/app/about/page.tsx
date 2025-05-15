@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import { Download } from "@deemlol/next-icons";
+//import { Download } from "@deemlol/next-icons";
 
 export default function About() {
   return (
