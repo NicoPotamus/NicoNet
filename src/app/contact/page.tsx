@@ -1,33 +1,10 @@
 'use client';
 
 import Navbar from "../components/Navbar";
-import { useState } from "react";
-import { ArrowRight, Phone, Mail, Github, Linkedin } from "@deemlol/next-icons";
+import ContactForm from "../components/ContactForm";
+import { Phone, Mail, Github, Linkedin } from "@deemlol/next-icons";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically send the form data to your backend
-    // For now, we'll just show a success message
-    setSubmitted(true);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
     <>
       <Navbar />
@@ -107,92 +84,10 @@ export default function Contact() {
 
                 {/* Contact Form */}
                 <div className="bg-white p-8 rounded-xl shadow-lg">
-                  {submitted ? (
-                    <div className="text-center py-12">
-                      <h3 className="text-2xl font-bold text-green-600 mb-4">Message Sent!</h3>
-                      <p className="text-gray-600 mb-6">Thank you for reaching out. I&apos;ll get back to you soon!</p>
-                      <button
-                        onClick={() => setSubmitted(false)}
-                        className="text-blue-600 hover:text-blue-800"
-                      >
-                        Send another message
-                      </button>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                          Name
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="Your name"
-                        />
-                      </div>
-
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="your@email.com"
-                        />
-                      </div>
-
-                      <div>
-                        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                          Subject
-                        </label>
-                        <input
-                          type="text"
-                          id="subject"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="What's this about?"
-                        />
-                      </div>
-
-                      <div>
-                        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                          Message
-                        </label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          value={formData.message}
-                          onChange={handleChange}
-                          required
-                          rows={5}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="Tell me about your project..."
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="w-full py-3 px-6 bg-gradient-to-r from-violet-600 to-cyan-600 text-white rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
-                      >
-                        Send Message
-                        <ArrowRight size={20} />
-                      </button>
-                    </form>
-                  )}
+                  <ContactForm 
+                    showSubject={true}
+                    successMessage="Thank you for reaching out. I'll get back to you soon!"
+                  />
                 </div>
               </div>
             </div>

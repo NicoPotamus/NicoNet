@@ -1,10 +1,19 @@
+'use client';
+
 import Navbar from "./components/Navbar";
-//import Image from "next/image";
 import Ribbons from "./components/Ribbons";
+import ContactForm from "./components/ContactForm";
 import { ArrowRight, Anchor, Key } from "@deemlol/next-icons";
 import Link from "next/link";
 
 export default function Home() {
+  const scrollToForm = () => {
+    document.querySelector('.project-form')?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
   return (
     <>
       <Navbar />
@@ -27,21 +36,27 @@ export default function Home() {
                 From custom web applications to complex systems, we deliver high-performance software solutions that scale. Let&apos;s turn your vision into reality.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <button className="group relative w-full sm:w-auto px-6 py-3 min-w-[200px]">
+                <button 
+                  onClick={scrollToForm}
+                  className="group relative w-full sm:w-auto px-6 py-3 min-w-[200px] transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                >
                   <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-lg"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-lg lg:blur-md blur-0 group-hover:opacity-60 transition-opacity duration-500"></div>
                   <div className="relative flex items-center justify-center gap-2">
                     <span className="text-white font-medium">Start Your Project</span>
-                    <ArrowRight size={24} color="#FFFFFF" />
+                    <ArrowRight size={24} color="#FFFFFF" className="group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </button>
 
-                <Link href="/portfolio" className="group relative w-full sm:w-auto px-6 py-3 min-w-[200px]">
+                <Link 
+                  href="/portfolio" 
+                  className="group relative w-full sm:w-auto px-6 py-3 min-w-[200px] transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                >
                   <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg lg:blur-md blur-0 group-hover:opacity-60 transition-opacity duration-500"></div>
                   <div className="relative flex items-center justify-center gap-2">
                     <span className="text-white font-medium">View Portfolio</span>
-                    <ArrowRight size={24} color="#FFFFFF" />
+                    <ArrowRight size={24} color="#FFFFFF" className="group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </Link>
               </div>
@@ -88,42 +103,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white project-form">
         <div className="container mx-auto px-5 lg:px-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">Ready to Start Your Project?</h2>
             <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your name" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input type="email" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="your@email.com" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Project Type</label>
-                  <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    <option value="">Select project type</option>
-                    <option value="web">Web Application</option>
-                    <option value="mobile">Mobile App</option>
-                    <option value="system">System Integration</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                  <textarea className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32" placeholder="Tell us about your project"></textarea>
-                </div>
-                <div>
-                  <button type="submit" className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity">
-                    Send Message
-                  </button>
-                </div>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </div>

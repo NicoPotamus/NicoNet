@@ -1,6 +1,11 @@
+'use client';
+
+import React, { useState } from "react";
 import Link from "next/link";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="lg:px-16 px-4 bg-white flex flex-wrap items-center py-4 shadow-md">
       <div className="flex-1 flex justify-between items-center">
@@ -9,7 +14,12 @@ export default function Navbar() {
         </a>
       </div>
 
-      <label htmlFor="menu-toggle" className="pointer-cursor md:hidden block">
+      <button
+        aria-label="Toggle menu"
+        onClick={() => setMenuOpen((open) => !open)}
+        className="md:hidden block focus:outline-none"
+        type="button"
+      >
         <svg
           className="fill-current text-gray-900"
           xmlns="http://www.w3.org/2000/svg"
@@ -20,11 +30,13 @@ export default function Navbar() {
           <title>menu</title>
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
         </svg>
-      </label>
-      <input className="hidden" type="checkbox" id="menu-toggle" />
+      </button>
 
       <div
-        className="hidden md:flex md:items-center md:w-auto w-full"
+        className={
+          `md:flex md:items-center md:w-auto w-full` +
+          (menuOpen ? " block" : " hidden md:block")
+        }
         id="menu"
       >
         <nav>
