@@ -108,7 +108,10 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">Ready to Start Your Project?</h2>
             <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
-              <ContactForm />
+              <ContactForm 
+                showSubject={true}
+                successMessage="Thank you for reaching out. I'll get back to you soon!"
+              />
             </div>
           </div>
         </div>

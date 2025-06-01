@@ -31,17 +31,3 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
-
-# Database
-*.sqlite
-*.db
-
-# Build output
-dist/
-build/
-.next/
-out/
-
-# Logs
-logs/
-*.log

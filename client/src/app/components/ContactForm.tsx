@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "@deemlol/next-icons";
 import { useState } from "react";
+import { createProject } from "./myFetch";
 
 interface ContactFormProps {
   showSubject?: boolean;
@@ -27,14 +28,38 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(formData);
+    setLoading(true);
+    setError('');
+
+    try {
+      const projectData = {
+        name: formData.name,
+        email: formData.email,
+        subject: showSubject ? formData.subject || 'No Subject' : `New ${formData.projectType} Project`,
+        description: formData.message // match the API's expected field name
+      };
+
+      const response = await createProject(projectData);
+      
+      if (response.success) {
+        if (onSubmit) {
+          onSubmit(formData);
+        }
+        setSubmitted(true);
+      } else {
+        throw new Error('Failed to create project');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setError('Failed to submit form. Please try again.');
+    } finally {
+      setLoading(false);
     }
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -154,13 +179,20 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
         ></textarea>
       </div>
 
+      {error && (
+        <div className="text-red-600 text-sm mb-4">
+          {error}
+        </div>
+      )}
+      
       <div>
         <button 
           type="submit" 
-          className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+          disabled={loading}
+          className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50"
         >
-          Send Message
-          <ArrowRight size={20} />
+          {loading ? 'Sending...' : 'Send Message'}
+          {!loading && <ArrowRight size={20} />}
         </button>
       </div>
     </form>

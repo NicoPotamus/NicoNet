@@ -1,0 +1,27 @@
+###
+GET http://localhost:8000/
+
+###
+GET http://localhost:8000/projects?page=1
+
+###
+POST http://localhost:8000/projects
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "subject": "New Project Proposal",
+    "message": "This is a test project submission"
+}
+
+###
+POST http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "niconet1",
+    "password": "iWillBSmthg"
+}
+
+###
