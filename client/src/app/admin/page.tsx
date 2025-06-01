@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getProjects, loginAdmin } from '../components/myFetch';
-import type Project from '../model/project';
+import { getProjects, loginAdmin, deleteProject } from '../components/myFetch';
+import type { Project } from '../model/project';
 
 
 export default function AdminPage() {
@@ -64,6 +64,30 @@ export default function AdminPage() {
         localStorage.removeItem('adminToken');
         setIsLoggedIn(false);
         setProjects([]);
+    };
+
+    const handleDelete = async (id: string) => {
+        if (!window.confirm('Are you sure you want to delete this project? This action cannot be undone.')) {
+            return;
+        }
+
+        try {
+            const response = await deleteProject(id);
+            if (response.success) {
+                // Remove the deleted project from state
+                setProjects(projects.filter(project => project.id !== id));
+                // If the current page is now empty and we're not on the first page, 
+                // fetch the previous page
+                if (projects.length === 1 && currentPage > 1) {
+                    fetchProjects(currentPage - 1);
+                }
+            } else {
+                setError(response.error || 'Failed to delete project');
+            }
+        } catch (error: unknown) {
+            const errorMessage = error instanceof Error ? error.message : 'Failed to delete project';
+            setError(errorMessage);
+        }
     };
 
     if (!isLoggedIn) {
@@ -138,18 +162,32 @@ export default function AdminPage() {
                     </button>
                 </div>
 
+                {error && (
+                    <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+                        {error}
+                    </div>
+                )}
+
                 <div className="bg-white shadow rounded-lg overflow-hidden">
                     <div className="divide-y divide-gray-200">
                         {projects.map((project) => (
                             <div key={project.id} className="p-4 hover:bg-gray-50">
                                 <div className="flex justify-between items-start">
-                                    <div>
+                                    <div className="flex-grow">
                                         <h3 className="text-lg font-medium text-gray-900">{project.subject}</h3>
                                         <p className="mt-1 text-sm text-gray-600">{project.name} - {project.email}</p>
                                     </div>
-                                    <span className="text-sm text-gray-500">
-                                        {new Date(project.createdAt).toLocaleDateString()}
-                                    </span>
+                                    <div className="flex items-center gap-4">
+                                        <span className="text-sm text-gray-500">
+                                            {new Date(project.createdAt).toLocaleDateString()}
+                                        </span>
+                                        <button
+                                            onClick={() => handleDelete(project.id)}
+                                            className="text-sm text-red-600 hover:text-red-800"
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
                                 </div>
                                 <p className="mt-2 text-sm text-gray-500">{project.description}</p>
                             </div>

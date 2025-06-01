@@ -1,32 +1,10 @@
-import type Project from '../model/project';
-
-interface PaginatedResponse {
-    success: boolean;
-    data: {
-        projects: Project[];
-        pagination: {
-            currentPage: number;
-            totalPages: number;
-            hasMore: boolean;
-            totalProjects: number;
-        }
-    }
-}
-
-interface ProjectCreateResponse {
-    success: boolean;
-    data: {
-        project: Project;
-    }
-}
-
-interface LoginResponse {
-    success: boolean;
-    data?: {
-        token: string;
-    };
-    error?: string;
-}
+import { 
+    Project, 
+    PaginatedResponse, 
+    ProjectCreateResponse, 
+    ProjectDeleteResponse, 
+    LoginResponse 
+} from '../model/project';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
@@ -79,6 +57,38 @@ export async function createProject(projectData: Omit<Project, 'id' | 'createdAt
         return data;
     } catch (error) {
         console.error('Error creating project:', error);
+        throw error;
+    }
+}
+
+/**
+ * Delete a project by ID
+ * @param id Project ID to delete 
+ * @returns Promise with deleted project ID
+ */
+export async function deleteProject(id: string): Promise<ProjectDeleteResponse> {
+    try {
+        const token = localStorage.getItem('adminToken');
+        if (!token) {
+            throw new Error('Authorization required');
+        }
+
+        const response = await fetch(`${API_URL}/projects/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error deleting project:', error);
         throw error;
     }
 }

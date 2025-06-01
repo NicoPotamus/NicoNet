@@ -2,7 +2,7 @@ import "reflect-metadata";
 import express, { Express, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { getProjectsBatched, createProject } from "./controller/project";
+import { getProjectsBatched, createProject, deleteProject } from "./controller/project";
 import { adminLogin } from "./controller/auth";
 
 // Load environment variables
@@ -41,6 +41,9 @@ app.get("/", (req: Request, res: Response) => {
 app.get('/api/projects', getProjectsBatched);
 app.post('/api/projects', (req: Request, res: Response, next) => {
     Promise.resolve(createProject(req, res)).catch(next);
+});
+app.delete('/api/projects/:id', (req: Request, res: Response, next) => {
+    Promise.resolve(deleteProject(req, res)).catch(next);
 });
 
 // Auth routes

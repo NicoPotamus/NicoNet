@@ -1,7 +1,7 @@
 /**
  * Represents a project in the system
  */
-export default interface Project {
+export interface Project {
     /** Unique identifier for the project */
     id: string;
     
@@ -19,4 +19,52 @@ export default interface Project {
     
     /** Timestamp when the project was created */
     createdAt: string;
+}
+
+/**
+ * Response type for paginated project requests
+ */
+export interface PaginatedResponse {
+    success: boolean;
+    data: {
+        projects: Project[];
+        pagination: {
+            currentPage: number;
+            totalPages: number;
+            hasMore: boolean;
+            totalProjects: number;
+        }
+    }
+}
+
+/**
+ * Response type for project creation
+ */
+export interface ProjectCreateResponse {
+    success: boolean;
+    data: {
+        project: Project;
+    }
+}
+
+/**
+ * Response type for project deletion
+ */
+export interface ProjectDeleteResponse {
+    success: boolean;
+    data?: {
+        id: string;
+    };
+    error?: string;
+}
+
+/**
+ * Response type for admin login
+ */
+export interface LoginResponse {
+    success: boolean;
+    data?: {
+        token: string;
+    };
+    error?: string;
 }

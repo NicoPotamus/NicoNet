@@ -106,3 +106,41 @@ export const createProject = async (req: Request, res: Response) => {
     }
 };
 
+/**
+ * Delete a project by ID
+ */
+export const deleteProject = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+
+        // Validate project exists
+        const checkResult = await pool.query('SELECT id FROM projects WHERE id = $1', [id]);
+        if (checkResult.rows.length === 0) {
+            return res.status(404).json({
+                success: false,
+                error: 'Project not found',
+                message: 'No project exists with the specified ID'
+            });
+        }
+
+        // Delete the project
+        const query = `DELETE FROM projects WHERE id = $1 RETURNING id`;
+        const result = await pool.query(query, [id]);
+        
+        res.status(200).json({
+            success: true,
+            data: {
+                id: result.rows[0].id
+            }
+        });
+
+    } catch (error) {
+        console.error('Error deleting project:', error);
+        res.status(500).json({ 
+            success: false,
+            error: 'Failed to delete project',
+            message: error instanceof Error ? error.message : 'Unknown error occurred'
+        });
+    }
+};
+
