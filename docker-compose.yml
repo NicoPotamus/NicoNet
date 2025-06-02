@@ -41,7 +41,7 @@ services:
     image: postgres:15-alpine
     environment:
       - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}  # Changed to match .env
+      - POSTGRES_PASSWORD=${DB_PASSWORD}  # Changed to match DB_PASSWORD from .env
       - POSTGRES_DB=${DB_NAME}
     env_file:
       - .env
@@ -49,6 +49,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
 
 volumes:
