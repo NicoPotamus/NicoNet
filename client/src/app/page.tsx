@@ -3,7 +3,7 @@
 import Navbar from "./components/Navbar";
 import Ribbons from "./components/Ribbons";
 import ContactForm from "./components/ContactForm";
-import { ArrowRight, Anchor, Key } from "@deemlol/next-icons";
+import { ArrowRight, Key } from "@deemlol/next-icons";
 import Link from "next/link";
 import NNLogo from "./NNLogo.png";
 import Image from "next/image";
