@@ -4,18 +4,22 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { getProjectsBatched, createProject, deleteProject } from "./controller/project";
 import { adminLogin } from "./controller/auth";
+import path from "path/posix";
 
 // Load environment variables
-dotenv.config({ path: "../.env" });
+dotenv.config({ path: path.resolve(__dirname, "../.env") });  // This will look for .env in the project root
+
+// Verify critical environment variables
+if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD || !process.env.JWT_SECRET) {
+    console.error('Missing required authentication environment variables');
+    process.exit(1);
+}
 
 if (!process.env.DB_USER || !process.env.DB_PASSWORD) {
     console.error('Missing required database environment variables');
     process.exit(1);
 }
-else{
-    console.log(`db pass : ${process.env.DB_PASSWORD}`);
-    console.log(`db user : ${process.env.DB_USER}`);
-}
+
 
 const port = process.env.PORT || 8000;
 const app: Express = express();

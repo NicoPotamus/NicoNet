@@ -6,6 +6,18 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 export const adminLogin = async (req: Request, res: Response) => {
     try {
         const { username, password } = req.body;
+        
+        console.log('Login attempt:', {
+            providedUsername: username,
+            expectedUsername: process.env.ADMIN_USERNAME,
+            providedPassword: password?.length,
+            expectedPassword: process.env.ADMIN_PASSWORD?.length,
+            envVarsLoaded: {
+                ADMIN_USERNAME: !!process.env.ADMIN_USERNAME,
+                ADMIN_PASSWORD: !!process.env.ADMIN_PASSWORD,
+                JWT_SECRET: !!process.env.JWT_SECRET
+            }
+        });
 
         // Check against environment variables
         if (username === process.env.ADMIN_USERNAME && 
