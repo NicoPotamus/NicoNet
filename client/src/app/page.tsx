@@ -5,6 +5,8 @@ import Ribbons from "./components/Ribbons";
 import ContactForm from "./components/ContactForm";
 import { ArrowRight, Anchor, Key } from "@deemlol/next-icons";
 import Link from "next/link";
+import NNLogo from "./NNLogo.png";
+import Image from "next/image";
 
 export default function Home() {
   const scrollToForm = () => {
@@ -63,12 +65,13 @@ export default function Home() {
             </div>
 
             <div className="w-full md:w-2/5 md:pl-12">
-              <div className="bg-white bg-opacity-10 backdrop-filter md:backdrop-blur-lg relative rounded-xl p-8 shadow-2xl">
-                <h2 className="text-2xl font-semibold mb-6">Expert Services</h2>
-                <Anchor
-                  size={24}
-                  color="#FFFFFF"
-                  className="h-16 right-2 top-2 drop_shadow lg:block md:block hidden absolute"
+              <div className="bg-white bg-opacity-10 backdrop-filter md:backdrop-blur-lg relative rounded-xl p-8 pt-16 shadow-2xl">
+                <Image 
+                  src={NNLogo} 
+                  alt="NN Logo" 
+                  width={64} 
+                  height={64} 
+                  className="absolute top-4 right-4"
                 />
                 <ul className="space-y-4">
                   <li className="flex items-center">
