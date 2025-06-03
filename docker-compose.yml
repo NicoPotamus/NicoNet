@@ -1,14 +1,15 @@
-version: '3.8'
-
 services:
   client:
     build: 
       context: ./client
     ports:
-      - "3000:3000"
+      - "${CLIENT_PORT}:${CLIENT_PORT}"
+    env_file:
+      - .env
     environment:
-      - NODE_ENV=production
-      - NEXT_PUBLIC_API_URL=${SERVER_URL}/api
+      - NODE_ENV=${NODE_ENV}
+      - NEXT_PUBLIC_SERVER_URL=${SERVER_URL}
+      - PORT=${CLIENT_PORT}
     depends_on:
       - server
     restart: always
@@ -17,19 +18,19 @@ services:
     build: 
       context: ./server
     ports:
-      - "8000:8000"
+      - "${PORT}:${PORT}"
     environment:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - JWT_SECRET=${JWT_SECRET}
       - NODE_ENV=${NODE_ENV}
       - CLIENT_URL=${CLIENT_URL}
       - SERVER_URL=${SERVER_URL}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
     env_file:
       - .env
     depends_on:
@@ -38,17 +39,17 @@ services:
 
   db:
     image: postgres:15-alpine
-    ports:
-      - "5432:5432"
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
     env_file:
       - .env
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db:/docker-entrypoint-initdb.d
     restart: always
 
 volumes:
