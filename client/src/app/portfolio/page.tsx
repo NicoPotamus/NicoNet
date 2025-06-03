@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Github } from "@deemlol/next-icons";
 
 interface Project {
@@ -16,7 +17,7 @@ const projects: Project[] = [
     title: "Interview Coach",
     description: "Help user get their dream job by providing in demand skills on the job market based on job title.",
     tags: ["React-Native", "Expo", "TypeScript", "Native-Wind", "FastAPI", "SQL", "AWS", "Docker"],
-    imageUrl: "/interviewCoach2.png",
+    imageUrl: "/interview_coach.png", // Image is in public directory, so we use root path
     liveUrl: "https://brybytes.com",
     githubUrl: "https://github.com/nicopotamus/interview_coach",
   },
@@ -24,38 +25,38 @@ const projects: Project[] = [
 ];
 
 export default function Portfolio() {
-return (
-  <>
-    <Navbar />
-    <main className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">My Portfolio</h1>
-            <p className="text-xl text-gray-300 mb-8">Full-stack Developer specializing in modern web technologies</p>
-            <div className="flex justify-center gap-4">
-              <Link 
-                href="https://github.com/nicopotamus" 
-                target="_blank"
-                className="flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <Github size={24} />
-                GitHub Profile
-              </Link>
-              <Link 
-                href="/NicoResume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white hover:text-gray-900 transition-colors"
-              >
-                View Resume
-                <ArrowRight size={24} />
-              </Link>
+  return (
+    <>
+      <Navbar />
+      <main className="min-h-screen bg-gray-50">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">My Portfolio</h1>
+              <p className="text-xl text-gray-300 mb-8">Full-stack Developer specializing in modern web technologies</p>
+              <div className="flex justify-center gap-4">
+                <Link
+                  href="https://github.com/nicopotamus"
+                  target="_blank"
+                  className="flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
+                >
+                  <Github size={24} />
+                  GitHub Profile
+                </Link>
+                <Link
+                  href="/NicoResume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white hover:text-gray-900 transition-colors"
+                >
+                  View Resume
+                  <ArrowRight size={24} />
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
         {/* Projects Grid */}
         <section className="py-20">
@@ -65,11 +66,13 @@ return (
               {projects.map((project, index) => (
                 <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                   <div className="aspect-video bg-gray-200 relative">
-                    {/* You can add project screenshots here */}
-                    <img
+                    <Image
                       src={project.imageUrl}
                       alt={project.title}
-                      className="object-cover w-full h-full"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={index === 0}
                     />
                   </div>
                   <div className="p-6">
@@ -167,7 +170,7 @@ return (
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-4">Let&apos;s Work Together</h2>
               <p className="text-gray-600 mb-8">I&apos;m currently available for freelance projects and full-time opportunities.</p>
-              <Link 
+              <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-600 to-cyan-600 text-white rounded-lg hover:opacity-90 transition-opacity"
               >
