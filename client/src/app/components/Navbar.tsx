@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,9 +10,13 @@ export default function Navbar() {
   return (
     <header className="lg:px-16 px-4 bg-white flex flex-wrap items-center py-4 shadow-md">
       <div className="flex-1 flex justify-between items-center">
-        <a href="./" className="text-xl">
-          NicoNet
-        </a>
+        <Image 
+          src="/NNLogo.png" 
+          alt="NicoNet" 
+          width={40} 
+          height={40}
+          className="object-contain"
+        />
       </div>
 
       <button

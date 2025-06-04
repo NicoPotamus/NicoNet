@@ -9,8 +9,7 @@ export default function About() {
         <div className="grid md:grid-cols-2 grid-cols-1 items-center gap-10 md:px-10">
           <div>
             <h1 className="mb-2 text-3xl font-bold text-white">
-              <span className="text-green-500">Hi,</span> I&apos;m Full Stack
-              Developer
+              Welcome to <span className="text-green-500">NicoNet</span>
             </h1>
             <p className="mb-6 text-white">
               At <b>NicoNet</b>, we create custom web and software solutions that help

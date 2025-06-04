@@ -97,20 +97,21 @@ export default function Home() {
             viewBox="0 0 1440 120"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className="text-white dark:text-gray-900"
           >
             <path
               d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-              fill="white"
+              fill="currentColor"
             />
           </svg>
         </div>
       </section>
 
-      <section className="py-16 bg-white project-form">
+      <section className="py-16 bg-white dark:bg-gray-900 project-form">
         <div className="container mx-auto px-5 lg:px-12">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">Ready to Start Your Project?</h2>
-            <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-900 dark:text-white">Ready to Start Your Project?</h2>
+            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg">
               <ContactForm 
                 showSubject={true}
                 successMessage="Thank you for reaching out. I'll get back to you soon!"

@@ -33,7 +33,7 @@ export default function Portfolio() {
         <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">My Portfolio</h1>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">Portfolio</h1>
               <p className="text-xl text-gray-300 mb-8">Full-stack Developer specializing in modern web technologies</p>
               <div className="flex justify-center gap-4">
                 <Link

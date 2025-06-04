@@ -73,11 +73,11 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
   if (submitted && successMessage) {
     return (
       <div className="text-center py-12">
-        <h3 className="text-2xl font-bold text-green-600 mb-4">Message Sent!</h3>
-        <p className="text-gray-600 mb-6">{successMessage}</p>
+        <h3 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-4">Message Sent!</h3>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">{successMessage}</p>
         <button
           onClick={() => setSubmitted(false)}
-          className="text-blue-600 hover:text-blue-800"
+          className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
         >
           Send another message
         </button>
@@ -94,7 +94,7 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Name</label>
           <input 
             id="name"
             type="text" 
@@ -103,13 +103,17 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
             onChange={handleChange}
             required
             autoComplete="new-name"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                     bg-white dark:bg-gray-700 
+                     text-gray-900 dark:text-white
+                     focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                     placeholder-gray-500 dark:placeholder-gray-400" 
             placeholder="Your name" 
             suppressHydrationWarning
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Email</label>
           <input 
             id="email"
             type="email" 
@@ -118,7 +122,11 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
             onChange={handleChange}
             required
             autoComplete="new-email"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                     bg-white dark:bg-gray-700 
+                     text-gray-900 dark:text-white
+                     focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                     placeholder-gray-500 dark:placeholder-gray-400" 
             placeholder="your@email.com" 
             suppressHydrationWarning
           />
@@ -127,7 +135,7 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
 
       {showSubject ? (
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Subject</label>
           <input
             type="text"
             id="subject"
@@ -136,14 +144,18 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
             onChange={handleChange}
             required
             autoComplete="off"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                     bg-white dark:bg-gray-700 
+                     text-gray-900 dark:text-white
+                     focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                     placeholder-gray-500 dark:placeholder-gray-400"
             placeholder="What's this about?"
             suppressHydrationWarning
           />
         </div>
       ) : (
         <div>
-          <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 mb-1">Project Type</label>
+          <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Project Type</label>
           <select 
             id="projectType"
             name="projectType"
@@ -151,20 +163,23 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
             onChange={handleChange}
             required
             autoComplete="off"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                     bg-white dark:bg-gray-700 
+                     text-gray-900 dark:text-white
+                     focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             suppressHydrationWarning
           >
-            <option value="">Select project type</option>
-            <option value="web">Web Application</option>
-            <option value="mobile">Mobile App</option>
-            <option value="system">System Integration</option>
-            <option value="other">Other</option>
+            <option value="" className="dark:bg-gray-700">Select project type</option>
+            <option value="web" className="dark:bg-gray-700">Web Application</option>
+            <option value="mobile" className="dark:bg-gray-700">Mobile App</option>
+            <option value="system" className="dark:bg-gray-700">System Integration</option>
+            <option value="other" className="dark:bg-gray-700">Other</option>
           </select>
         </div>
       )}
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Message</label>
         <textarea 
           id="message"
           name="message"
@@ -173,14 +188,18 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
           required
           rows={5}
           autoComplete="off"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32" 
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                   bg-white dark:bg-gray-700 
+                   text-gray-900 dark:text-white
+                   focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                   placeholder-gray-500 dark:placeholder-gray-400 h-32" 
           placeholder="Tell us about your project"
           suppressHydrationWarning
         ></textarea>
       </div>
 
       {error && (
-        <div className="text-red-600 text-sm mb-4">
+        <div className="text-red-600 dark:text-red-400 text-sm mb-4">
           {error}
         </div>
       )}
@@ -189,7 +208,10 @@ export default function ContactForm({ showSubject = false, successMessage, onSub
         <button 
           type="submit" 
           disabled={loading}
-          className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50"
+          className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-violet-600 to-cyan-600 
+                   text-white font-medium rounded-lg hover:opacity-90 transition-opacity 
+                   flex items-center justify-center gap-2 disabled:opacity-50
+                   dark:from-violet-500 dark:to-cyan-500 dark:text-white"
         >
           {loading ? 'Sending...' : 'Send Message'}
           {!loading && <ArrowRight size={20} />}
