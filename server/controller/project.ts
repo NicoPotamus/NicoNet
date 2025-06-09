@@ -1,6 +1,7 @@
 import type Project from "../model/project";
 import { Request, Response } from "express";
 import { Pool } from "pg";
+import sendSimpleMessage from "./mailer"
 
 // Initialize PostgreSQL connection pool
 const pool = new Pool({
@@ -88,7 +89,7 @@ export const createProject = async (req: Request, res: Response) => {
         `;
         
         const result = await pool.query(query, [name, email, subject, description]);
-        
+        sendSimpleMessage(name, email, subject, description); // Call to send email after fetching projects
         res.status(201).json({
             success: true,
             data: {
@@ -143,4 +144,5 @@ export const deleteProject = async (req: Request, res: Response) => {
         });
     }
 };
+
 

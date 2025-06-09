@@ -5,7 +5,6 @@ import Ribbons from "./components/Ribbons";
 import ContactForm from "./components/ContactForm";
 import { ArrowRight, Key } from "@deemlol/next-icons";
 import Link from "next/link";
-import NNLogo from "./NNLogo.png";
 import Image from "next/image";
 
 export default function Home() {
@@ -67,7 +66,7 @@ export default function Home() {
             <div className="w-full md:w-2/5 md:pl-12">
               <div className="bg-white bg-opacity-10 backdrop-filter md:backdrop-blur-lg relative rounded-xl p-8 pt-16 shadow-2xl">
                 <Image 
-                  src={NNLogo} 
+                  src="/NNLogo.png" 
                   alt="NN Logo" 
                   width={64} 
                   height={64} 
