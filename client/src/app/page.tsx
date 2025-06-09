@@ -67,7 +67,6 @@ export default function Home() {
               <div className="bg-white bg-opacity-10 backdrop-filter md:backdrop-blur-lg relative rounded-xl p-8 pt-16 shadow-2xl">
                 <Image 
                   src="/NNLogo.png"
-                  src="/NNLogo.png" 
                   alt="NN Logo" 
                   width={64} 
                   height={64} 
