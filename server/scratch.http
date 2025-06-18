@@ -24,4 +24,27 @@ Content-Type: application/json
     "password": "iWillBSmthg"
 }
 
-###
+### Create Tunnel
+POST http://localhost:8000/api/tunnel/provision
+
+
+### Expected Response:
+# {
+#   "success": true,
+#   "data": {
+#     "configYml": "...",
+#     "tunnelJsonBase64": "...",
+#     "hostname": "test-device-001.yourdomain.com"
+#   }
+# }
+
+### Test Cloudflare API Directly
+# @name createTunnel
+POST https://api.cloudflare.com/client/v4/accounts/8f8cbcebaac730c4876925325c9bc441/cfd_tunnel
+Content-Type: application/json
+Authorization: Bearer IcMcuPz-5PVp-TmlfyOkSR1Mz9cX66NJ2GSsiWxw
+
+{
+  "name": "api-tunnel",
+  "config_src": "cloudflare"
+}

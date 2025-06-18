@@ -1,9 +1,17 @@
 import { Router } from 'express';
-import { getProjectsBatched } from '../controller/project';
+import { getProjectsBatched, createProject, deleteProject } from '../controller/project';
 
 const router = Router();
 
-// Route to get batched projects with pagination
-router.get('/projects', getProjectsBatched);
+// Project routes with proper error handling
+router.get('/', getProjectsBatched);
+
+router.post('/', (req, res, next) => {
+    Promise.resolve(createProject(req, res)).catch(next);
+});
+
+router.delete('/:id', (req, res, next) => {
+    Promise.resolve(deleteProject(req, res)).catch(next);
+});
 
 export default router;

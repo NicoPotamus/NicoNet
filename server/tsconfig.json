@@ -1,17 +1,18 @@
 {
-  // "extends": "@tsconfig/node22/tsconfig.json",
+  "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
-    "preserveConstEnums": true,
-    "target": "es2022",
-    "module": "node16",
-    "moduleResolution": "node16",
+    "target": "ES2024",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "outDir": "./dist",
     "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["./**/*.ts"],
-  "exclude": ["**/*.spec.ts", "node_modules", "dist"]
+  "exclude": ["node_modules", "dist"]
 }

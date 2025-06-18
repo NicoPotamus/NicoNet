@@ -2,9 +2,10 @@ import "reflect-metadata";
 import express, { Express, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { getProjectsBatched, createProject, deleteProject } from "./controller/project";
-import { adminLogin } from "./controller/auth";
 import path from "path/posix";
+import projectRoutes from "./routes/project";
+import authRoutes from "./routes/auth";
+import tunnelRoutes from "./routes/tunnel";
 
 // Load environment variables
 dotenv.config({ path: path.resolve(__dirname, "../.env") });  // This will look for .env in the project root
@@ -20,6 +21,10 @@ if (!process.env.DB_USER || !process.env.DB_PASSWORD) {
     process.exit(1);
 }
 
+// Verify Cloudflare configuration
+if (!process.env.CLOUDFLARE_DOMAIN) {
+    console.warn('CLOUDFLARE_DOMAIN not set, using default domain');
+}
 
 const port = process.env.PORT || 8000;
 const app: Express = express();
@@ -28,7 +33,7 @@ const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    //origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: process.env.CLIENT_URL || 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
@@ -41,19 +46,10 @@ app.get("/", (req: Request, res: Response) => {
     });
 });
 
-// Project routes
-app.get('/api/projects', getProjectsBatched);
-app.post('/api/projects', (req: Request, res: Response, next) => {
-    Promise.resolve(createProject(req, res)).catch(next);
-});
-app.delete('/api/projects/:id', (req: Request, res: Response, next) => {
-    Promise.resolve(deleteProject(req, res)).catch(next);
-});
-
-// Auth routes
-app.post('/api/auth/login', adminLogin);
-
-
+// Mount modular routes
+app.use('/api/projects', projectRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/tunnel', tunnelRoutes);
 
 // Error handler
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

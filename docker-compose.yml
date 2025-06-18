@@ -13,6 +13,13 @@ services:
     depends_on:
       - server
     restart: always
+    # Add healthcheck to ensure proper cleanup
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${CLIENT_PORT}/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   server:
     build: 
@@ -31,11 +38,22 @@ services:
       - SERVER_URL=${SERVER_URL}
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - CLOUDFLARE_DOMAIN=${CLOUDFLARE_DOMAIN}
+      - CLOUDFLARE_ZONE_ID=${CLOUDFLARE_ZONE_ID}
+      - CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID}
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
     env_file:
       - .env
     depends_on:
       - db
     restart: always
+    # Add healthcheck
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${PORT}/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   db:
     image: postgres:15-alpine
@@ -51,6 +69,13 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
     restart: always
+    # Add healthcheck
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
 volumes:
   postgres_data:
